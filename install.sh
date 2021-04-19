@@ -26,7 +26,20 @@ function _install_rsyslog_housekeeping ()
 
     if [[ -f /usr/bin/systemd ]];
     then
-        sed -e "s/TEMPLATE_PATH_TO_THE_SCRIPT/${PATH_OF_THE_CURRENT_SCRIPT_BASH}/cleanup_and_maintain_syslog_systemevent.sh/" ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.sevice.dist > ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.service
+        local TEMPLATE_PATH_TO_THE_SCRIPT="${PATH_OF_THE_CURRENT_SCRIPT_BASH}/cleanup_and_maintain_syslog_systemevent.sh"
+
+        cat > ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.service <<DELIM
+[Unit]
+Description=Weekly rsyslog mysql housekeeping
+ConditionACPower=true
+After=rsyslog.service
+
+[Service]
+Type=oneshot
+ExecStart=${TEMPLATE_PATH_TO_THE_SCRIPT}
+KillMode=process
+TimeoutStopSec=21600
+DELIM
 
         sudo cp ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.service /etc/systemd/system/weekly-rsyslog-housekeeping.service
         sudo cp ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.timer /etc/systemd/system/weekly-rsyslog-housekeeping.timer
