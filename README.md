@@ -25,7 +25,7 @@ systemctl enable weekly-rsyslog-housekeeping.timer
 
 #if you want to do housekeeping right away
 screen
-bash /opt/net.bazzline/rsyslog_mysql_housekeeping/cleanup_and_maintain_syslog_systemevent.sh
+systemctl start weekly-rsyslog-housekeeping.service
 ```
 
 The script installs a [systemd service file](weekly-rsyslog-housekeeping.service.dist) and a [systemd timer file](weekly-rsyslog-housekeeping.timer) *if* systemd is installed.
