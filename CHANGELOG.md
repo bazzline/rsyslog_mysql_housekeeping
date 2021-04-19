@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### To Change
 
+* Fix issue for not working `sed -e`, just do it with `cat >file<...`
+
 ## [Unreleased]
 
 ### Added
