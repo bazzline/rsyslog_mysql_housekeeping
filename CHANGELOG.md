@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### To Add
 
 * Try to read `/etc/rsyslog.d/mysql.conf` to automatically configure or generate the config file.
+* Try to read about systemd service PID confiuration to ensure only one is started at a time.
 
 ### To Change
 
