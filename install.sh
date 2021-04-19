@@ -44,7 +44,9 @@ DELIM
         sudo cp ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.service /etc/systemd/system/weekly-rsyslog-housekeeping.service
         sudo cp ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.timer /etc/systemd/system/weekly-rsyslog-housekeeping.timer
         sudo systemctl daemon-reload
-        sudo systemctl enable weekly-rsyslog-housekeeping.timer
+
+        echo ":: Please enable the time on your own."
+        echo "   systemctl enable weekly-rsyslog-housekeeping.timer"
     fi
 
     echo "Installed at: $(date)" > ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/.is_installed
