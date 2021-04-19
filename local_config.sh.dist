@@ -1,0 +1,8 @@
+#!/bin/bash
+####
+# Contains all variable configuration parameters
+####
+
+DATABASE_USER_NAME="database user name"
+DATABASE_USER_PASSWORD="database user password"
+DAYS_TO_KEEP_IN_THE_PAST=90

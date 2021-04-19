@@ -1,0 +1,10 @@
+[Unit]
+Description=Weekly rsyslog mysql housekeeping
+ConditionACPower=true
+After=rsyslog.service
+
+[Service]
+Type=oneshot
+ExecStart=TEMPLATE_PATH_TO_THE_SCRIPT
+KillMode=process
+TimeoutStopSec=21600
