@@ -24,13 +24,16 @@ function _install_rsyslog_housekeeping ()
     echo "   >>${PATH_OF_THE_CURRENT_SCRIPT_BASH}/local.config.sh<<"
     echo ""
 
-    cp ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.service.dist ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.service
-    sed "s/ExecStart=TEMPLATE_PATH_TO_THE_SCRIPT/${PATH_OF_THE_CURRENT_SCRIPT_BASH}/cleanup_and_maintain_syslog_systemevent.sh" > ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.service
+    if [[ -f /usr/bin/systemd ]];
+    then
+        cp ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.service.dist ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.service
+        sed "s/ExecStart=TEMPLATE_PATH_TO_THE_SCRIPT/${PATH_OF_THE_CURRENT_SCRIPT_BASH}/cleanup_and_maintain_syslog_systemevent.sh" > ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.service
 
-    sudo ln -s ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.service /usr/lib/systemd/weekly-rsyslog-housekeeping.service
-    sudo ln -s ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.timer /usr/lib/systemd/weekly-rsyslog-housekeeping.timer
-    sudo systemctl daemon-reload
-    sudo systemctl enable weekly-rsyslog-housekeeping.timer
+        sudo ln -s ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.service /usr/lib/systemd/weekly-rsyslog-housekeeping.service
+        sudo ln -s ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.timer /usr/lib/systemd/weekly-rsyslog-housekeeping.timer
+        sudo systemctl daemon-reload
+        sudo systemctl enable weekly-rsyslog-housekeeping.timer
+    fi
 
     echo "Installed at: $(date)" > ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/.is_installed
 }

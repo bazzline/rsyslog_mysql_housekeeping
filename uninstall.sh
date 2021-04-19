@@ -18,15 +18,18 @@ function _uninstall_rsyslog_housekeeping ()
         return 1
     fi
 
-    sudo systemctl disable weekly-rsyslog-housekeeping.timer
+    if [[ -f /usr/bin/systemd ]];
+    then
+        sudo systemctl disable weekly-rsyslog-housekeeping.timer
 
-    sudo rm /usr/lib/systemd/weekly-rsyslog-housekeeping.timer
-    sudo rm /usr/lib/systemd/weekly-rsyslog-housekeeping.service
+        sudo rm /usr/lib/systemd/weekly-rsyslog-housekeeping.timer
+        sudo rm /usr/lib/systemd/weekly-rsyslog-housekeeping.service
 
-    rm ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.timer
-    rm ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.service
+        rm ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.timer
+        rm ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.service
 
-    sudo systemctl daemon-reload
+        sudo systemctl daemon-reload
+    fi
 
     mv ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/local_config.sh ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/local_config.sh.save
 
