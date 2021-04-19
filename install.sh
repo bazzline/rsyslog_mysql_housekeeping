@@ -28,8 +28,8 @@ function _install_rsyslog_housekeeping ()
     then
         sed -e "s/TEMPLATE_PATH_TO_THE_SCRIPT/${PATH_OF_THE_CURRENT_SCRIPT_BASH}/cleanup_and_maintain_syslog_systemevent.sh/" ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.sevice.dist > ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.service
 
-        sudo ln -s ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.service /etc/systemd/system/weekly-rsyslog-housekeeping.service
-        sudo ln -s ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.timer /etc/systemd/system/weekly-rsyslog-housekeeping.timer
+        sudo cp ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.service /etc/systemd/system/weekly-rsyslog-housekeeping.service
+        sudo cp ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.timer /etc/systemd/system/weekly-rsyslog-housekeeping.timer
         sudo systemctl daemon-reload
         sudo systemctl enable weekly-rsyslog-housekeeping.timer
     fi
