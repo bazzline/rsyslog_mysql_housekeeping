@@ -9,9 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### To Add
 
-### To Change
+* Try to read `/etc/rsyslog.d/mysql.conf` to automatically configure or generate the config file.
 
-* Fix issue for not working `sed -e`, just do it with `cat >file<...`
+### To Change
 
 ## [Unreleased]
 
