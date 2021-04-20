@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * Add a configurable Limit because of [this post](https://forums.mysql.com/read.php?20,264405,264433#msg-264433)
     * This will stop having endless running processes
     * Think about looping multiple times before running the optimize
+    * Maybe read the output of the deletion statement like described [here](https://www.pontikis.net/blog/store-mysql-result-to-array-from-bash), or [here](https://www.cloudsavvyit.com/1081/check-a-value-in-a-mysql-database-from-a-linux-bash-script/)
 
 ## [Unreleased]
 
