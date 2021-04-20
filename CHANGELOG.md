@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 * Add support for server when mysql server is not on host `localhost`
 * Add logging
+    * `logger -p local3.notice <message>`
+    * `logger -p local3.info <message>`
+    * `logger -p local3.crit <message>`
 * Try to read `/etc/rsyslog.d/mysql.conf` to automatically configure or generate the config file.
 
 ### To Change
