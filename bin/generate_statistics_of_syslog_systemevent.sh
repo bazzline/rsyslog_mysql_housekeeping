@@ -31,10 +31,10 @@ function generate_statistics_of_syslog_systemevent ()
 
     #bo: generate_statistic
     echo ":: Number of entries in total."
-    mysql -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} -e "SELECT COUNT (ID) FROM `${DATABASE_TABLE}`" ${DATABASE_NAME}
+    mysql -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} -e "SELECT COUNT (ID) FROM ${DATABASE_TABLE}" ${DATABASE_NAME}
     echo ""
     echo ":: Number of posible deleted entries."
-    mysql -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} -e "SELECT COUNT (ID) FROM `${DATABASE_TABLE}` WHERE `${DATABASE_TABLE}`.`DeviceReportedTime` < date_add(current_date, interval - ${DAYS_TO_KEEP_IN_THE_PAST} day)" ${DATABASE_NAME}
+    mysql -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} -e "SELECT COUNT (ID) FROM ${DATABASE_TABLE} WHERE ${DATABASE_TABLE}.DeviceReportedTime < date_add(current_date, interval - ${DAYS_TO_KEEP_IN_THE_PAST} day)" ${DATABASE_NAME}
     #eo: generate_statistic
 }
 
