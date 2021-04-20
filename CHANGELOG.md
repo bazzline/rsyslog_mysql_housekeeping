@@ -24,7 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-## [0.9.0](https://github.com/bazzline/tatortreiniger/tree/0.9.0) - released at 20210420
+## [0.9.0](https://github.com/bazzline/rsyslog_mysql_housekeeping/tree/0.9.0) - released at 20210420
 
 ### Added
 
