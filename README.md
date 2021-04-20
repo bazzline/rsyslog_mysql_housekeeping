@@ -44,3 +44,17 @@ bash bin/generate_statistics_of_syslog_systemevent.sh
 
 #if you want to execute the housekeeping skript
 bash bin/cleanup_and_maintain_syslog_systemevent.sh
+```
+
+# Troubleshooting
+
+## Long runtime
+
+Execute following statement in your mysql shell.
+
+```
+SHOW ENGINE INNODB STATUS \G
+```
+
+The last few lines are containing the important messages with `25.21 inserts/s, 0.00 updates/s, 1137.62 deletes/s, 1139.97 reads/s` (as example).
+Based on that number, you can do some calculation how long it will take.

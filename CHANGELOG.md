@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### To Change
 
+* Add a configurable Limit because of [this post](https://forums.mysql.com/read.php?20,264405,264433#msg-264433)
+    * This will stop having endless running processes
+    * Think about looping multiple times before running the optimize
+
 ## [Unreleased]
 
 ### Added
