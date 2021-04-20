@@ -10,10 +10,14 @@ function _uninstall_rsyslog_housekeeping ()
 {
     local PATH_OF_THE_CURRENT_SCRIPT_BASH=$(cd $(dirname "${BASH_SOURCE[0]}"); pwd)
 
-    if [[ ! -f ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/.is_installed ]];
+    #bin: executables, data: dynamic or static data files
+    local PATH_TO_BIN="${PATH_OF_THE_CURRENT_SCRIPT_BASH}/../bin"
+    local PATH_TO_DATA="${PATH_OF_THE_CURRENT_SCRIPT_BASH}/../data"
+
+    if [[ ! -f ${PATH_TO_DATA}/.is_installed ]];
     then
         echo ":: No Installation found."
-        echo "   Please run >>${PATH_OF_THE_CURRENT_SCRIPT_BASH}/install.sh<< if needed."
+        echo "   Please run >>${PATH_TO_BIN}/install.sh<< if needed."
 
         return 1
     fi
@@ -30,14 +34,14 @@ function _uninstall_rsyslog_housekeeping ()
         sudo rm /etc/systemd/system/weekly-rsyslog-housekeeping.timer
         sudo rm /etc/systemd/system/weekly-rsyslog-housekeeping.service
 
-        rm ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/weekly-rsyslog-housekeeping.service
+        rm ${PATH_TO_DATA}/weekly-rsyslog-housekeeping.service
 
         sudo systemctl daemon-reload
     fi
 
-    mv ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/local_config.sh ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/local_config.sh.save
+    mv ${PATH_TO_DATA}/local_config.sh ${PATH_TO_DATA}/local_config.sh.save
 
-    rm ${PATH_OF_THE_CURRENT_SCRIPT_BASH}/.is_installed
+    rm ${PATH_TO_DATA}/.is_installed
 }
 
 _uninstall_rsyslog_housekeeping
