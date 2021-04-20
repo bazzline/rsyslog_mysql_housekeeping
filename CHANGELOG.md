@@ -9,8 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### To Add
 
-* Try to read `/etc/rsyslog.d/mysql.conf` to automatically configure or generate the config file.
 * Add support for server when mysql server is not on host `localhost`
+* Add logging
+* Try to read `/etc/rsyslog.d/mysql.conf` to automatically configure or generate the config file.
 
 ### To Change
 
