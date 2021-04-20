@@ -23,7 +23,7 @@ function _install_rsyslog_housekeeping ()
         return 1
     fi
 
-    cp ${PATH_TO_DATA}/local_config.sh.dist ${PATH_TO_DATA}/local_config.sh
+    cp ${PATH_TO_SOURCE}/local_config.sh.dist ${PATH_TO_DATA}/local_config.sh
 
     echo ":: Please configure following file."
     echo "   >>${PATH_TO_DATA}/local.config.sh<<"

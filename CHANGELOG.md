@@ -25,6 +25,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+* moved `local_config.sh.dist` from [data](data) to [source](source)
+
 ## [0.9.0](https://github.com/bazzline/rsyslog_mysql_housekeeping/tree/0.9.0) - released at 20210420
 
 ### Added
