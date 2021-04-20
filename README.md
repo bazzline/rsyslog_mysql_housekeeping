@@ -13,9 +13,10 @@ All configurable values are configured close by.
 
 ```
 sudo su
-mkdir -p /opt/net.bazzline/rsyslog_mysql_housekeeping
-cd /opt/net.bazzline/rsyslog_mysql_housekeeping
-git clone https://github.com/bazzline/rsyslog_mysql_housekeeping .
+mkdir -p /opt/net.bazzline
+cd /opt/net.bazzline
+git clone https://github.com/bazzline/rsyslog_mysql_housekeeping
+cd rsyslog_mysql_housekeeping
 bash bin/install.sh
 
 #add user name, password and days
