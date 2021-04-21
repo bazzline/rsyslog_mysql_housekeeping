@@ -3,12 +3,12 @@
 # Contains all variable configuration parameters
 ####
 
-CONFIGURATION_VERSION=1
-DATABASE_USER_NAME="database user name"
-DATABASE_USER_PASSWORD="database user password"
-DAYS_TO_KEEP_IN_THE_PAST=90
-EXECUTE_DATABASE_CHECK=0
-EXECUTE_DATABASE_OPTIMIZE=1
-EXECUTE_DATABASE_ANALYZE=1
-NUMBER_OF_ENTRIES_TO_DELETE_PER_RUN=100000
-NUMBER_OF_RUNS=100
+CONFIGURATION_VERSION=1 #current version, only change per hand if needed. Migration path will be provided.
+DATABASE_USER_NAME="database user name" #your database user name, should be the same as rsyslog or a user with the same rights
+DATABASE_USER_PASSWORD="database user password" #your database user password
+DAYS_TO_KEEP_IN_THE_PAST=90 #number of days in the past from the current datetime you want to keep
+EXECUTE_DATABASE_CHECK=0    #1 if you want to check the whole table on each run, 0 if you don't want to check
+EXECUTE_DATABASE_OPTIMIZE=1 #1 if you want to optimize the whole table on each run, 0 if you don't want to check
+EXECUTE_DATABASE_ANALYZE=1  #1 if you want to analyze the whole table on each run, 0 if you don't want to check
+NUMBER_OF_ENTRIES_TO_DELETE_PER_RUN=100000  #entires per deletion run, depends on your setup
+NUMBER_OF_RUNS=100  #how often should the delete statement be executed, depends on your setup
