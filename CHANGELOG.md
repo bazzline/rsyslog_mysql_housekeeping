@@ -25,11 +25,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+* Fixed major issue in `mysqlcheck` section
 * Add `NUMBER_OF_ENTRIES_TO_DELETE_PER_RUN` to the configuration used as `LIMIT` because of [this post](https://forums.mysql.com/read.php?20,264405,264433#msg-264433)
     * This will stop having endless running processes
     * This will stop running into socket timeouts
 * Added `NUMBER_OF_RUNS=10` to configuration to chunk the total process
-* moved `local_config.sh.dist` from [data](data) to [source](source)
+* Moved `local_config.sh.dist` from [data](data) to [source](source)
 
 ## [0.9.0](https://github.com/bazzline/rsyslog_mysql_housekeeping/tree/0.9.0) - released at 20210420
 
