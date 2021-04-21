@@ -44,11 +44,11 @@ function cleanup_and_maintain_syslog_systemevent ()
 
     #bo: maintenance
     #   check table health
-    mysqlcheck -u ${DATABASE_USER} -p${DATABASE_PASSWORD} --check --databases ${DATABASE_NAME}
+    mysqlcheck -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} --check --databases ${DATABASE_NAME}
     #   reclaim unused disk space
-    mysqlcheck -u ${DATABASE_USER} -p${DATABASE_PASSWORD} --optimize --databases ${DATABASE_NAME}
+    mysqlcheck -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} --optimize --databases ${DATABASE_NAME}
     #   rebuild and optimize indexes
-    mysqlcheck -u ${DATABASE_USER} -p${DATABASE_PASSWORD} --analyze --databases ${DATABASE_NAME}
+    mysqlcheck -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} --analyze --databases ${DATABASE_NAME}
     #eo: maintenance
 }
 
