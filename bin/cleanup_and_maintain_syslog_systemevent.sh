@@ -24,8 +24,10 @@ function cleanup_and_maintain_syslog_systemevent ()
 
     if [[ -f "${PATH_TO_THE_LOCAL_CONFIGURATION_FILE}" ]];
     then
+        logger -i -p cron.debug "Sourcing configuration file >>${PATH_TO_THE_LOCAL_CONFIGURATION_FILE}<<."
         source "${PATH_TO_THE_LOCAL_CONFIGURATION_FILE}"
     else
+        logger -i -p cron.crit "Configuration file not found >>${PATH_TO_THE_LOCAL_CONFIGURATION_FILE}<<!"
         echo ":: No configuration file available."
         echo "   No file in path >>${PATH_TO_THE_LOCAL_CONFIGURATION_FILE}<<."
 
@@ -34,22 +36,30 @@ function cleanup_and_maintain_syslog_systemevent ()
     #eo: variable declaration
 
     #bo: cleanup
-    local CURRENT_RUN_ITERATOR=0
-    while [[ ${CURRENT_RUN_ITERATOR} -lt ${NUMBER_OF_RUNS} ]];
+    logger -i -p cron.debug "bo: cleanup."
+    local CURRENT_RUN_ITERATOR=1
+    while [[ ${CURRENT_RUN_ITERATOR} -le ${NUMBER_OF_RUNS} ]];
     do
+        logger -i -p cron.info "Run ${CURRENT_RUN_ITERATOR} / ${NUMBER_OF_RUNS} started."
         mysql -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} -e "DELETE FROM ${DATABASE_TABLE} WHERE ${DATABASE_TABLE}.DeviceReportedTime < date_add(current_date, interval - ${DAYS_TO_KEEP_IN_THE_PAST} day) LIMIT ${NUMBER_OF_ENTRIES_TO_DELETE_PER_RUN}" ${DATABASE_NAME}
         ((++CURRENT_RUN_ITERATOR))
+        logger -i -p cron.info "Run ${CURRENT_RUN_ITERATOR} / ${NUMBER_OF_RUNS} finished."
     done
+    logger -i -p cron.debug "eo: cleanup."
     #eo: cleanup
 
     #bo: maintenance
+    logger -i -p cron.debug "bo: maintenance."
     #   check table health
-    #logger -i -p cron.info Starting check for database >>${DATABASE_NAME} ${DATABASE_TABLE}<<
-    mysqlcheck -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} --check --databases ${DATABASE_NAME} ${DATABASE_TABLE}
+    logger -i -p cron.notice "Starting >>check<< for database >>${DATABASE_NAME} ${DATABASE_TABLE}<<"
+    mysqlcheck -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} --check --auto-repair databases ${DATABASE_NAME} ${DATABASE_TABLE}
     #   reclaim unused disk space
-    mysqlcheck -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} --optimize --databases ${DATABASE_NAME} ${DATABASE_TABLE}
+    logger -i -p cron.notice "Starting >>optimize<< for database >>${DATABASE_NAME} ${DATABASE_TABLE}<<"
+    mysqlcheck -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} --optimize databases ${DATABASE_NAME} ${DATABASE_TABLE}
     #   rebuild and optimize indexes
-    mysqlcheck -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} --analyze --databases ${DATABASE_NAME} ${DATABASE_TABLE}
+    logger -i -p cron.notice "Starting >>analyze<< for database >>${DATABASE_NAME} ${DATABASE_TABLE}<<"
+    mysqlcheck -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} --analyze databases ${DATABASE_NAME} ${DATABASE_TABLE}
+    logger -i -p cron.debug "eo: maintenance."
     #eo: maintenance
 }
 

@@ -10,11 +10,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### To Add
 
 * Add support for server when mysql server is not on host `localhost`
-* Add logging
-    * `logger -i -p cron.notice <message>`
-    * `logger -i -p cron.info <message>`
-    * `logger -i -p cron.crit <message>`
-    * available levels are `emerg`, `alert`, `crit`, `err`, `warning`, `notice`, `info` and `debug`
 * Try to read `/etc/rsyslog.d/mysql.conf` to automatically configure or generate the config file.
 
 ### To Change
@@ -25,6 +20,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
+
+* Add logging
 
 ### Changed
 
