@@ -37,13 +37,15 @@ function cleanup_and_maintain_syslog_systemevent ()
 
     #bo: cleanup
     logger -i -p cron.debug "bo: cleanup."
+    logger -i -p cron.debug "   Using deletion limit of >>${NUMBER_OF_ENTRIES_TO_DELETE_PER_RUN}<<."
+
     local CURRENT_RUN_ITERATOR=1
     while [[ ${CURRENT_RUN_ITERATOR} -le ${NUMBER_OF_RUNS} ]];
     do
-        logger -i -p cron.info "Run ${CURRENT_RUN_ITERATOR} / ${NUMBER_OF_RUNS} started."
+        logger -i -p cron.info "   Run ${CURRENT_RUN_ITERATOR} / ${NUMBER_OF_RUNS} started."
         mysql -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} -e "DELETE FROM ${DATABASE_TABLE} WHERE ${DATABASE_TABLE}.DeviceReportedTime < date_add(current_date, interval - ${DAYS_TO_KEEP_IN_THE_PAST} day) LIMIT ${NUMBER_OF_ENTRIES_TO_DELETE_PER_RUN}" ${DATABASE_NAME}
         ((++CURRENT_RUN_ITERATOR))
-        logger -i -p cron.info "Run ${CURRENT_RUN_ITERATOR} / ${NUMBER_OF_RUNS} finished."
+        logger -i -p cron.info "   Run ${CURRENT_RUN_ITERATOR} / ${NUMBER_OF_RUNS} finished."
     done
     logger -i -p cron.debug "eo: cleanup."
     #eo: cleanup
@@ -51,13 +53,13 @@ function cleanup_and_maintain_syslog_systemevent ()
     #bo: maintenance
     logger -i -p cron.debug "bo: maintenance."
     #   check table health
-    logger -i -p cron.notice "Starting >>check<< for database >>${DATABASE_NAME} ${DATABASE_TABLE}<<"
+    logger -i -p cron.notice "   Starting >>check<< for database >>${DATABASE_NAME} ${DATABASE_TABLE}<<"
     mysqlcheck -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} --check --auto-repair databases ${DATABASE_NAME} ${DATABASE_TABLE}
     #   reclaim unused disk space
-    logger -i -p cron.notice "Starting >>optimize<< for database >>${DATABASE_NAME} ${DATABASE_TABLE}<<"
+    logger -i -p cron.notice "   Starting >>optimize<< for database >>${DATABASE_NAME} ${DATABASE_TABLE}<<"
     mysqlcheck -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} --optimize databases ${DATABASE_NAME} ${DATABASE_TABLE}
     #   rebuild and optimize indexes
-    logger -i -p cron.notice "Starting >>analyze<< for database >>${DATABASE_NAME} ${DATABASE_TABLE}<<"
+    logger -i -p cron.notice "   Starting >>analyze<< for database >>${DATABASE_NAME} ${DATABASE_TABLE}<<"
     mysqlcheck -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} --analyze databases ${DATABASE_NAME} ${DATABASE_TABLE}
     logger -i -p cron.debug "eo: maintenance."
     #eo: maintenance
