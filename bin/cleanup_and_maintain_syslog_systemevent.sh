@@ -54,13 +54,13 @@ function cleanup_and_maintain_syslog_systemevent ()
     logger -i -p cron.debug "bo: maintenance."
     #   check table health
     logger -i -p cron.notice "   Starting >>check<< for database >>${DATABASE_NAME} ${DATABASE_TABLE}<<"
-    mysqlcheck -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} --check --auto-repair databases ${DATABASE_NAME} ${DATABASE_TABLE}
+    mysqlcheck -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} --check --auto-repair ${DATABASE_NAME} ${DATABASE_TABLE}
     #   reclaim unused disk space
     logger -i -p cron.notice "   Starting >>optimize<< for database >>${DATABASE_NAME} ${DATABASE_TABLE}<<"
-    mysqlcheck -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} --optimize databases ${DATABASE_NAME} ${DATABASE_TABLE}
+    mysqlcheck -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} --optimize ${DATABASE_NAME} ${DATABASE_TABLE}
     #   rebuild and optimize indexes
     logger -i -p cron.notice "   Starting >>analyze<< for database >>${DATABASE_NAME} ${DATABASE_TABLE}<<"
-    mysqlcheck -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} --analyze databases ${DATABASE_NAME} ${DATABASE_TABLE}
+    mysqlcheck -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} --analyze ${DATABASE_NAME} ${DATABASE_TABLE}
     logger -i -p cron.debug "eo: maintenance."
     #eo: maintenance
 }
