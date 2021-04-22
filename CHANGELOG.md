@@ -21,7 +21,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-* Add logging
+* Added logging
+* Added `sleep 10` for every deletion round
 * Added configuration values `CONFIGURATION_VERSION`, `EXECUTE_DATABASE_CHECK`, `EXECUTE_DATABASE_OPTIMIZE` and `EXECUTE_DATABASE_ANALYZE`
     * First value is used to handle different configuration versions
     * Other three values are used to fine control database table maintenance

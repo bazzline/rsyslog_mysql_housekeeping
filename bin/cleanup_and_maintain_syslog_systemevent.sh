@@ -59,6 +59,7 @@ function cleanup_and_maintain_syslog_systemevent ()
         mysql -u ${DATABASE_USER_NAME} -p${DATABASE_USER_PASSWORD} -e "DELETE FROM ${DATABASE_TABLE} WHERE ${DATABASE_TABLE}.DeviceReportedTime < date_add(current_date, interval - ${DAYS_TO_KEEP_IN_THE_PAST} day) LIMIT ${NUMBER_OF_ENTRIES_TO_DELETE_PER_RUN}" ${DATABASE_NAME}
         logger -i -p cron.info "   Run ${CURRENT_RUN_ITERATOR} / ${NUMBER_OF_RUNS} finished."
         ((++CURRENT_RUN_ITERATOR))
+        sleep 10 #a few seconds does not harm us but helps the dbms to fetch some fresh air
     done
     logger -i -p cron.debug "eo: cleanup."
     #eo: cleanup
