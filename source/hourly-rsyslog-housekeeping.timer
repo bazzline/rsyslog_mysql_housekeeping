@@ -1,0 +1,10 @@
+[Unit]
+Description=Hourly rsyslog mysql housekeeping
+
+[Timer]
+OnCalendar=hourly
+RandomizedDelaySec=42
+Persistent=true
+
+[Install]
+WantedBy=timers.target

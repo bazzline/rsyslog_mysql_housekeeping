@@ -11,11 +11,16 @@ bash bin/install.sh
 #add user name, password and days
 vim data/local_config.sh
 
+#you can to choose between on of the three shipped timers
 systemctl enable weekly-rsyslog-housekeeping.timer
+#_or
+systemctl enable daily-rsyslog-housekeeping.timer
+#_or
+systemctl enable hourly-rsyslog-housekeeping.timer
 
 #if you want to do housekeeping right away
 screen
-systemctl start weekly-rsyslog-housekeeping.service
+/opt/net.bazzline/rsyslog_mysql_housekeeping/bin/cleanup_and_maintain_syslog_systemevent.sh
 ```
 
-The script creates a `systemd service file` and a [systemd timer file](source/weekly-rsyslog-housekeeping.timer) *if* systemd is installed.
+The script creates a `systemd service file` and multiple [systemd timer files](source/) *if* systemd is installed.

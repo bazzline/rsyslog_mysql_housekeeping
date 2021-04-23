@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+* Added two different timers plus extended installation script
 * Started [documentation](documentation) section
 * Added logging
 * Added `sleep 10` for every deletion round
