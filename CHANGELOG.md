@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### To Change
 
+* Refactore systemd timers or service file to pass in the current used configuration?
+    * This way we could run a simple "every 15 minutes" cleanup job
+    * And a once per week "optimize table" job
+    * Think about if it even makes more sense to have two seperate services and timers?
 * Add a configurable Limit because of [this post](https://forums.mysql.com/read.php?20,264405,264433#msg-264433)
     * Maybe read the output of the deletion statement like described [here](https://www.pontikis.net/blog/store-mysql-result-to-array-from-bash), or [here](https://www.cloudsavvyit.com/1081/check-a-value-in-a-mysql-database-from-a-linux-bash-script/) and loop until deletion is 0 or less than 1000
 
