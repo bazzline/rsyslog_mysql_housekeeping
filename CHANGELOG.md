@@ -25,6 +25,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+### Changed
+
+## [1.0.0](https://github.com/bazzline/rsyslog_mysql_housekeeping/tree/1.0.0) - released at 20210426
+
+### Added
+
 * Added two different timers plus extended installation script
 * Started [documentation](documentation) section
 * Added logging
