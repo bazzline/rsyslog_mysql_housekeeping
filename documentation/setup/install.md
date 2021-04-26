@@ -24,3 +24,4 @@ screen
 ```
 
 The script creates a `systemd service file` and multiple [systemd timer files](source/) *if* systemd is installed.
+If you want to create your own timer, please read [this](../knowledge_base/create_your_own_timer.md)

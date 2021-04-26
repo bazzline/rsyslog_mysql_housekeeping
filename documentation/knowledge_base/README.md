@@ -2,7 +2,6 @@
 
 Available tips and tricks are:
 
-* 
-doc/troubleshooting/long_running.md
-doc/troubleshooting/lost_connection_lock_wait_timeout.md
-doc/troubleshooting/README.md
+* [Create your own systemd timer](create_your_own_timer.md)
+* [Deal with long running services](long_running.md)
+* [Fix >>lost connection<< or >>lock wait timeoute<<.](lost_connection_lock_wait_timeout.md)
