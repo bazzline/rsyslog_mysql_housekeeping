@@ -33,9 +33,9 @@ function _install_rsyslog_housekeeping ()
     then
         local TEMPLATE_PATH_TO_THE_SCRIPT="${PATH_TO_BIN}/cleanup_and_maintain_syslog_systemevent.sh"
 
-        cat > ${PATH_TO_DATA}/weekly-rsyslog-housekeeping.service <<DELIM
+        cat > ${PATH_TO_DATA}/rsyslog-housekeeping.service <<DELIM
 [Unit]
-Description=Weekly rsyslog mysql housekeeping
+Description=rsyslog mysql housekeeping
 ConditionACPower=true
 After=rsyslog.service
 

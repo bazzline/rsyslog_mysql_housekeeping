@@ -27,6 +27,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+* renamed installed service file from `weekly-rsyslog-housekeeping.service` to `rsyslog-housekeeping.service`
+
 ## [1.0.0](https://github.com/bazzline/rsyslog_mysql_housekeeping/tree/1.0.0) - released at 20210426
 
 ### Added
