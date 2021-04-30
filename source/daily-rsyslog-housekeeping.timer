@@ -5,6 +5,7 @@ Description=Daily rsyslog mysql housekeeping
 OnCalendar=*-*-* 19:00
 RandomizedDelaySec=42
 Persistent=true
+Unit=rsyslog-housekeeping.service
 
 [Install]
 WantedBy=timers.target
