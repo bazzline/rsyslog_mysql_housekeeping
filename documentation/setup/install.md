@@ -11,7 +11,8 @@ bash bin/install.sh
 #add user name, password and days
 vim data/local_config.sh
 
-#you can to choose between on of the three shipped timers
+#if you run systemd
+# you can to choose between on of the three shipped timers
 systemctl enable weekly-rsyslog-housekeeping.timer
 #_or
 systemctl enable daily-rsyslog-housekeeping.timer

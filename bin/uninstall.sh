@@ -22,8 +22,22 @@ function _uninstall_rsyslog_housekeeping ()
         return 1
     fi
 
-    if [[ -f /usr/bin/systemd ]];
+    if [[ -f /usr/bin/systemctl ]];
     then
+        systemctl -q is-active daily-rsyslog-housekeeping.timer
+
+        if [[ $? -eq 0 ]];
+        then
+            sudo systemctl disable daily-rsyslog-housekeeping.timer
+        fi
+
+        systemctl -q is-active hourly-rsyslog-housekeeping.timer
+
+        if [[ $? -eq 0 ]];
+        then
+            sudo systemctl disable hourly-rsyslog-housekeeping.timer
+        fi
+
         systemctl -q is-active weekly-rsyslog-housekeeping.timer
 
         if [[ $? -eq 0 ]];
@@ -31,10 +45,24 @@ function _uninstall_rsyslog_housekeeping ()
             sudo systemctl disable weekly-rsyslog-housekeeping.timer
         fi
 
-        sudo rm /etc/systemd/system/weekly-rsyslog-housekeeping.timer
-        sudo rm /etc/systemd/system/weekly-rsyslog-housekeeping.service
+        if [[ -f /etc/systemd/system/daily-rsyslog-housekeeping.timer ]];
+        then
+            sudo rm /etc/systemd/system/daily-rsyslog-housekeeping.timer
+        fi
 
-        rm ${PATH_TO_DATA}/weekly-rsyslog-housekeeping.service
+        if [[ -f /etc/systemd/system/hourly-rsyslog-housekeeping.timer ]];
+        then
+            sudo rm /etc/systemd/system/hourly-rsyslog-housekeeping.timer
+        fi
+
+        if [[ -f /etc/systemd/system/weekly-rsyslog-housekeeping.timer ]];
+        then
+            sudo rm /etc/systemd/system/weekly-rsyslog-housekeeping.timer
+        fi
+
+        sudo rm /etc/systemd/system/rsyslog-housekeeping.service
+
+        rm ${PATH_TO_DATA}/rsyslog-housekeeping.service
 
         sudo systemctl daemon-reload
     fi

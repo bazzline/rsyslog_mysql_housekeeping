@@ -29,7 +29,7 @@ function _install_rsyslog_housekeeping ()
     echo "   >>${PATH_TO_DATA}/local.config.sh<<"
     echo ""
 
-    if [[ -f /usr/bin/systemd ]];
+    if [[ -f /usr/bin/systemctl ]];
     then
         local TEMPLATE_PATH_TO_THE_SCRIPT="${PATH_TO_BIN}/cleanup_and_maintain_syslog_systemevent.sh"
 
@@ -46,7 +46,7 @@ KillMode=process
 TimeoutStopSec=21600
 DELIM
 
-        sudo cp ${PATH_TO_DATA}/weekly-rsyslog-housekeeping.service /etc/systemd/system/weekly-rsyslog-housekeeping.service
+        sudo cp ${PATH_TO_DATA}/rsyslog-housekeeping.service /etc/systemd/system/rsyslog-housekeeping.service
 
         sudo cp ${PATH_TO_SOURCE}/weekly-rsyslog-housekeeping.timer /etc/systemd/system/weekly-rsyslog-housekeeping.timer
         sudo cp ${PATH_TO_SOURCE}/daily-rsyslog-housekeeping.timer /etc/systemd/system/daily-rsyslog-housekeeping.timer
@@ -55,7 +55,9 @@ DELIM
 
         echo ":: Please enable the fitting timer on your own."
         echo "   systemctl enable weekly-rsyslog-housekeeping.timer"
+        echo "   _or"
         echo "   systemctl enable daily-rsyslog-housekeeping.timer"
+        echo "   _or"
         echo "   systemctl enable hourly-rsyslog-housekeeping.timer"
     fi
 
