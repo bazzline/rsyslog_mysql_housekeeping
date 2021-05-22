@@ -10,10 +10,10 @@
 function cleanup_and_maintain_syslog_systemevent ()
 {
     #bo: variable declaration
-    local EXPECTED_CONFIGURATION_VERSION=1
-    local PATH_OF_THE_CURRENT_SCRIPT_BASH=$(cd $(dirname "${BASH_SOURCE[0]}"); pwd)
     local DATABASE_NAME="Syslog"
     local DATABASE_TABLE="SystemEvents"
+    local EXPECTED_CONFIGURATION_VERSION=1
+    local PATH_OF_THE_CURRENT_SCRIPT_BASH=$(cd $(dirname "${BASH_SOURCE[0]}"); pwd)
 
     #bin: executables, data: dynamic or static data files, source: templates or not executable no data files
     local PATH_TO_THE_LOCAL_CONFIGURATION_FILE="${PATH_OF_THE_CURRENT_SCRIPT_BASH}/../data/local_config.sh"
