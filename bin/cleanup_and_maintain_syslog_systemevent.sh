@@ -7,11 +7,6 @@
 # @author stev leibelt <artodeto@bazzline.net>
 ####
 
-####
-# @param: string <database user name>
-# @param: string <database user password>
-# [@param: int <days to keep in the past>] #default is keep the last 90 days
-####
 function cleanup_and_maintain_syslog_systemevent ()
 {
     #bo: variable declaration
