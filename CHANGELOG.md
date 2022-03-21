@@ -26,6 +26,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+* added `auto_elevate_if_not_called_from_root`
+
 ### Changed
 
 ## [1.0.1](https://github.com/bazzline/rsyslog_mysql_housekeeping/tree/1.0.1) - released at 20210521

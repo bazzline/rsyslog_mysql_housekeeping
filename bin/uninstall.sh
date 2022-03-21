@@ -6,6 +6,19 @@
 # @author stev leibelt <artodeto@bazzline.net>
 ####
 
+function _auto_elevate_if_not_called_from_root ()
+{
+    #begin of check if we are root
+    if [[ ${WHO_AM_I} != "root" ]];
+    then
+        #call this script (${0}) again with sudo with all provided arguments (${@})
+        sudo "${0}" "${@}"
+
+        exit ${?}
+    fi
+    #end of check if we are root
+}
+
 function _uninstall_rsyslog_housekeeping ()
 {
     local PATH_OF_THE_CURRENT_SCRIPT_BASH=$(cd $(dirname "${BASH_SOURCE[0]}"); pwd)
@@ -72,4 +85,5 @@ function _uninstall_rsyslog_housekeeping ()
     rm ${PATH_TO_DATA}/.is_installed
 }
 
+_auto_elevate_if_not_called_from_root
 _uninstall_rsyslog_housekeeping
