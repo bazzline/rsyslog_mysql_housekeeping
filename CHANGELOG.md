@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### To Change
 
+* Hardening the create systemd service by using [this guide](https://www.opensourcerers.org/2022/04/25/optimizing-a-systemd-service-for-security/)
 * Refactore systemd timers or service file to pass in the current used configuration?
     * This way we could run a simple "every 15 minutes" cleanup job
     * And a once per week "optimize table" job
